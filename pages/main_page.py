@@ -1,6 +1,6 @@
 from pages.base_page import BasePage
+from pages.search_restaurant_page import SearchRestaurantPage
 from locators import MainPageLocators
-import settings
 
 
 class MainPage(BasePage):
@@ -11,3 +11,5 @@ class MainPage(BasePage):
 
     def search_address(self, address):
         self.fill_input_field(*MainPageLocators.ADDRESS_INPUT, address)
+        self.click_element(*MainPageLocators.SEARCH_ADDRESS)
+        self.app.current_page = SearchRestaurantPage(self.app)

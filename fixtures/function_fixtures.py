@@ -19,7 +19,9 @@ import pytest
 
 @pytest.fixture
 def chrome_options(chrome_options):
-    chrome_options.binary_location = local_settings.CHROMEDRIVER_PATH
+    # chrome_options.binary_location = local_settings.CHROMEDRIVER_PATH
+    chrome_options.add_argument('no-sandbox')
+    chrome_options.add_argument("--disable-dev-shm-usage")
     return chrome_options
 
 
