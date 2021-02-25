@@ -3,8 +3,6 @@ from selenium.webdriver import ActionChains
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from locators import BaseLocators
-# from pages.menu_modal import MenuModal
 from settings import global_settings
 
 
@@ -55,21 +53,16 @@ class BasePage(ABC):
         browser = self.app.browser
         field = browser.find_element(how, what)
         field.clear()
-        # text_len = len(self.get_attribute_from_element(how, what))
-        # if text_len:
-        #     field.send_keys('\b' * text_len)
         field.send_keys(content)
 
-    def get_attribute_from_element(self, how, what, field_name='value', scroll=False):
-        # if scroll:
-        #     self.scroll_to_element(how, what)
+    def get_attribute_from_element(self, how, what, field_name='value'):
         return self.app.browser.find_element(how, what).get_attribute(field_name)
 
-    def count_of_elements(self, how, what, timeout=global_settings.DEFAULT_TIMEOUT):
+    def count_of_elements(self, how, what, timeout=global_settings.DEFAULT_TIMEOUT, assertion_msg=None):
         try:
             length = len(self.find_elements_when_appeared(how, what, timeout=timeout))
         except TimeoutException:
-            raise AssertionError
+            raise AssertionError(assertion_msg or 'elements with locator {} are not found'.format(what))
         return length
 
     def find_elements_when_appeared(self, how, what, timeout=global_settings.DEFAULT_TIMEOUT):

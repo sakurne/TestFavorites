@@ -34,18 +34,28 @@ class MainPageLocators:
 class SearchRestaurantLocators:
     ALL_RESTAURANTS = Locator(By.XPATH, '//div[@class = "restaurant js-restaurant"]')
     RESTAURANT_BY_INDEX = Locator(By.XPATH, '(//div[@class = "restaurant js-restaurant"])[{}]')
+    RESTAURANTS_OPENED = Locator(
+        By.XPATH,
+        '//div[@class="js-restaurant-list-open"]//div[@class = "restaurant js-restaurant"]'
+    )
 
-    RESTAURANTS_OPENED = Locator(By.XPATH, '//div[@class="js-restaurant-list-open"]//div[@class = "restaurant js-restaurant"]')
+    RESTAURANTS_PREORDER = Locator(
+        By.XPATH,
+        '//div[contains(@class, "js-restaurant-list-preorder")]//div[@class = "restaurant js-restaurant"]'
+    )
 
-    RESTAURANTS_PREORDER = Locator(By.XPATH,
-                                 '//div[@class="js-restaurant-list-preorder"]//div[@class = "restaurant js-restaurant"]')
-
-    RESTURANTS_CLOSED = Locator(By.XPATH, '//div[@class="js-restaurant-list-closed"]//div[@class = "restaurant js-restaurant"]')
-
+    RESTURANTS_CLOSED = Locator(
+        By.XPATH,
+        '//div[contains(@class, "js-restaurant-list-closed")]//div[@class = "restaurant js-restaurant"]'
+    )
     RESTAURANT_NAME_ENDING = '//a[contains(@class,"restaurantname")]'
     RESTAURANT_DELIVERY_TIME_ENDING = '//div[contains(@class, "avgdeliverytimefull")]'
     RESTAURANT_DELIVERY_COST_ENDING = '//div[contains(@class, "delivery-cost")]'
     HEART_ICON = Locator(By.CSS_SELECTOR, '.favorite-icon')
+    INFO_ICON = Locator(By.CSS_SELECTOR, '.info-icon')
+    DELIVERY_COST = Locator(By.CSS_SELECTOR, '[id="delivery-cost"]')
+    KITCHENS_ENDING = '//div[contains(@class, "kitchens")]'
+    CLOSE_MODAL = Locator(By.CSS_SELECTOR, '.tabs-header__modal-close')
 
 
 class MenuModalLocators:
@@ -57,5 +67,6 @@ class MenuModalLocators:
     DELIVERY_TIME_ENDING = '//..//div[contains(@class, "avgdeliverytime")]'
     DELIVER_COST_ENDING = '//..//div[contains(@class, "delivery-cost")]'
     KITCHENS_ENDING = '//..//div[contains(@class, "kitchens")]'
+    DELETE_ICON = '//..//span[contains(@class, "removefavorite")]'
 
 
